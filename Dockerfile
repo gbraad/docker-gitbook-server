@@ -15,5 +15,10 @@ WORKDIR /workspace
 EXPOSE 4000
 EXPOSE 35729
 
+# Add tini (download, until package created)
+ADD https://github.com/krallin/tini/releases/download/v0.10.0/tini /bin/tini
+RUN chmod +x /bin/tini
+ENTRYPOINT ["/bin/tini", "--"]
+
 CMD ["gitbook", "serve", "/workspace"]
 
